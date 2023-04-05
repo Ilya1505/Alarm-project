@@ -10,8 +10,9 @@ class AlarmTests : public QObject
 public:
     explicit AlarmTests(QObject *parent = nullptr);
 private slots:
-    void test_create();
-    void test_start();
+    void test_create();// тест на создание объекта
+    void test_start();// тест на старт будильника
+    void test_update();// тест на обновление будильника по тику таймера
 };
 
 #endif // ALARMTESTS_H

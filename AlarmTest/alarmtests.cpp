@@ -25,3 +25,11 @@ void AlarmTests::test_start()
     QCOMPARE(alarm->start("12:10"), true);
     QCOMPARE(alarm->start(""), false);
 }
+
+// тест на обновление будильника по тику таймера
+void AlarmTests::test_update()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->update(), false);
+}
