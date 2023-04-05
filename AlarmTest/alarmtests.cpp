@@ -16,3 +16,12 @@ void AlarmTests::test_create()
         delete alarm;
     }
 }
+
+// тест на старт будильника
+void AlarmTests::test_start()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->start("12:10"), true);
+    QCOMPARE(alarm->start(""), false);
+}
