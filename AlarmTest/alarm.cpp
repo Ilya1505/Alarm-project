@@ -5,6 +5,24 @@ Alarm::Alarm()
     statusGO = false;
     currentTime = new QString(QTime::currentTime().toString("HH:mm"));
     сallTime = new QString("");
+
+    // инициализация словаря композиций
+    track[0] = "source/Mozart.mp3";
+    track[1] = "source/Yiruma - River Flows In You.mp3";
+    track[2] = "source/atc-around-the-world.mp3";
+    track[3] = "source/OneRepublic - All the Right Moves.mp3";
+    track[4] = "source/Браво - Этот город самый лучший.mp3";
+
+    // композиция по умолчанию
+    currentTrack = track[0];
+
+    //объекты для работы с медиа
+    player = new QMediaPlayer;
+    audioOutput = new QAudioOutput;
+    player->setAudioOutput(audioOutput);
+
+    secAfterCall = 0;
+    minAfterCall = 0;
 }
 
 Alarm::~Alarm()
@@ -32,6 +50,12 @@ void Alarm::setMinAfterCall(int min)
     minAfterCall = min;
 }
 
+// установка композиции по номеру
+void Alarm::setTrack(int *indexTrack)
+{
+    currentTrack = track[*indexTrack];
+}
+
 bool Alarm::getStatusGO()
 {
     return statusGO;
@@ -40,6 +64,11 @@ bool Alarm::getStatusGO()
 QString Alarm::getCurrentTime()
 {
     return QTime::currentTime().toString("HH:mm:ss");
+}
+
+QString Alarm::getCurrentTrack()
+{
+    return currentTrack;
 }
 
 QString Alarm::getCallTime()

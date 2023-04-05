@@ -84,3 +84,21 @@ void AlarmTests::test_stopwatch()
         delete alarm;
     }
 }
+
+void AlarmTests::test_media()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->getCurrentTrack(),"source/Mozart.mp3");
+
+    int* indexTrack = new int(4);
+    alarm->setTrack(indexTrack);
+    QCOMPARE(alarm->getCurrentTrack(), "source/Браво - Этот город самый лучший.mp3");
+
+    if(alarm != nullptr) {
+        delete alarm;
+    }
+    if(indexTrack != nullptr){
+        delete indexTrack;
+    }
+}

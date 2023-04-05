@@ -16,6 +16,7 @@ private slots:
     void test_stop();// тест на остановку будильника
     void test_getMinuteToCall();// тест на получение времени до звонка будильника
     void test_stopwatch();// тест секундомера
+    void test_media(); // тест музыки
 };
 
 #endif // ALARMTESTS_H
