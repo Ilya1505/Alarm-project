@@ -3,6 +3,7 @@
 Alarm::Alarm()
 {
     statusGO = false;
+    currentTime = new QString(QTime::currentTime().toString("HH:mm"));
     сallTime = new QString("");
 }
 
@@ -10,6 +11,9 @@ Alarm::~Alarm()
 {
     if(сallTime != nullptr) {
         delete сallTime;
+    }
+    if(currentTime != nullptr) {
+        delete currentTime;
     }
 }
 
@@ -21,6 +25,19 @@ void Alarm::setStatusGO(bool status)
 bool Alarm::getStatusGO()
 {
     return statusGO;
+}
+
+QString Alarm::getCurrentTime()
+{
+    return QTime::currentTime().toString("HH:mm:ss");
+}
+
+// вычисление времени до звонка
+QString Alarm::getMinuteToCall(const QTime &timeCall)
+{
+    // todo реализовать вычисление времени позже до конца
+    QTime time = timeCall;
+    return time.toString("HH:mm:ss");
 }
 
 // запуск будильника: true - если запуск успешен, иначе - false
@@ -52,3 +69,5 @@ bool Alarm::stop()
     return !statusGO;
 
 }
+
+
