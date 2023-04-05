@@ -24,6 +24,10 @@ void AlarmTests::test_start()
 
     QCOMPARE(alarm->start("12:10"), true);
     QCOMPARE(alarm->start(""), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
 }
 
 // тест на обновление будильника по тику таймера
@@ -32,4 +36,24 @@ void AlarmTests::test_update()
     Alarm *alarm = new Alarm;
 
     QCOMPARE(alarm->update(), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на остановку будильника
+void AlarmTests::test_stop()
+{
+    Alarm *alarm = new Alarm;
+
+    alarm->setStatusGO(false);
+    QCOMPARE(alarm->stop(), false);
+
+    alarm->setStatusGO(true);
+    QCOMPARE(alarm->stop(), true);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
 }
