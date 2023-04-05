@@ -70,3 +70,17 @@ void AlarmTests::test_getMinuteToCall()
         delete alarm;
     }
 }
+
+// тест секундомера
+void AlarmTests::test_stopwatch()
+{
+    Alarm *alarm = new Alarm;
+
+    alarm->setSecAfterCall(10);
+    alarm->setMinAfterCall(2);
+    QCOMPARE(alarm->timeAfterCall(), "2 мин 10 сек");
+
+    if(alarm != nullptr) {
+        delete alarm;
+    }
+}

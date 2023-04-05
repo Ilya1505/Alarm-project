@@ -22,6 +22,16 @@ void Alarm::setStatusGO(bool status)
     this->statusGO = status;
 }
 
+void Alarm::setSecAfterCall(int sec)
+{
+    secAfterCall = sec;
+}
+
+void Alarm::setMinAfterCall(int min)
+{
+    minAfterCall = min;
+}
+
 bool Alarm::getStatusGO()
 {
     return statusGO;
@@ -30,6 +40,11 @@ bool Alarm::getStatusGO()
 QString Alarm::getCurrentTime()
 {
     return QTime::currentTime().toString("HH:mm:ss");
+}
+
+QString Alarm::getCallTime()
+{
+    return *сallTime;
 }
 
 // вычисление времени до звонка
@@ -70,4 +85,11 @@ bool Alarm::stop()
 
 }
 
+// секундомер после звонка
+QString Alarm::timeAfterCall()
+{
+    // todo доделать секундомер позже
 
+    QString result = QString::number(minAfterCall) + " мин " + QString::number(secAfterCall) + " сек";
+    return result;
+}
