@@ -87,12 +87,26 @@ QString Alarm::getMinuteToCall(const QTime &timeCall)
 // запуск будильника: true - если запуск успешен, иначе - false
 bool Alarm::start(QString signalTime)
 {
-    // todo реализвать метод start позднее полностью
-    if(signalTime != "") {
-        return true;
-    } else {
+
+    // если нет времени звонка, отмена запуска
+    if(signalTime=="") {
         return false;
     }
+
+    // проверка корректности времени
+    QStringList timeList = signalTime.split(":");
+    if(timeList.size() != 2){
+        return false;
+    }
+    try {
+        timeList[0].toInt();
+        timeList[1].toInt();
+    } catch (...) {
+        return false;
+    }
+     *this->сallTime = signalTime;
+     statusGO = true;
+     return statusGO;
 }
 
 // тик таймера: true - если звонок, иначе - false

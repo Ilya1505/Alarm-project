@@ -17,13 +17,37 @@ void AlarmTests::test_create()
     }
 }
 
-// тест на старт будильника
-void AlarmTests::test_start()
+// тест на старт будильника 1
+void AlarmTests::test_start_1()
 {
     Alarm *alarm = new Alarm;
 
     QCOMPARE(alarm->start("12:10"), true);
     QCOMPARE(alarm->start(""), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на старт будильника 2
+void AlarmTests::test_start_2()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->start("12:10:1"), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на старт будильника 3
+void AlarmTests::test_start_3()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->start("incorrect"), false);
 
     if(alarm != nullptr){
         delete alarm;
