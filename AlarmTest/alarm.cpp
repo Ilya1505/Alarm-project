@@ -4,7 +4,7 @@ Alarm::Alarm()
 {
     statusGO = false;
     currentTime = new QString(QTime::currentTime().toString("HH:mm"));
-    сallTime = new QString("");
+    callTime = new QString("");
 
     // инициализация словаря композиций
     track[0] = "source/Mozart.mp3";
@@ -27,8 +27,8 @@ Alarm::Alarm()
 
 Alarm::~Alarm()
 {
-    if(сallTime != nullptr) {
-        delete сallTime;
+    if(callTime != nullptr) {
+        delete callTime;
     }
     if(currentTime != nullptr) {
         delete currentTime;
@@ -56,6 +56,11 @@ void Alarm::setTrack(int *indexTrack)
     currentTrack = track[*indexTrack];
 }
 
+void Alarm::setCallTime(QString callTime)
+{
+    *this->callTime = callTime;
+}
+
 bool Alarm::getStatusGO()
 {
     return statusGO;
@@ -73,7 +78,7 @@ QString Alarm::getCurrentTrack()
 
 QString Alarm::getCallTime()
 {
-    return *сallTime;
+    return *callTime;
 }
 
 // вычисление времени до звонка
@@ -104,7 +109,7 @@ bool Alarm::start(QString signalTime)
     } catch (...) {
         return false;
     }
-     *this->сallTime = signalTime;
+     *this->callTime = signalTime;
      statusGO = true;
      return statusGO;
 }
@@ -112,8 +117,16 @@ bool Alarm::start(QString signalTime)
 // тик таймера: true - если звонок, иначе - false
 bool Alarm::update()
 {
-    //todo реализовать данный метод позже до конца
-    return false;
+    *currentTime = QTime::currentTime().toString("HH:mm");
+
+    if(*callTime == *currentTime) {
+        //todo добавить мелодию
+        *callTime = "";
+        return true;
+
+    } else {
+        return false;
+    }
 }
 
 // остановка будильника: true - если остановка успешна, иначе - false

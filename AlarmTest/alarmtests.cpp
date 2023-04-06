@@ -23,6 +23,7 @@ void AlarmTests::test_start_1()
     Alarm *alarm = new Alarm;
 
     QCOMPARE(alarm->start("12:10"), true);
+    QCOMPARE(alarm->start("00:01"), true);
     QCOMPARE(alarm->start(""), false);
 
     if(alarm != nullptr){
@@ -54,12 +55,26 @@ void AlarmTests::test_start_3()
     }
 }
 
-// тест на обновление будильника по тику таймера
-void AlarmTests::test_update()
+// тест на обновление будильника по тику таймера 1
+void AlarmTests::test_update_1()
 {
     Alarm *alarm = new Alarm;
 
     QCOMPARE(alarm->update(), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на обновление будильника по тику таймера 2
+void AlarmTests::test_update_2()
+{
+    Alarm *alarm = new Alarm;
+
+    QString currTime = QTime::currentTime().toString("HH:mm");
+    alarm->setCallTime(currTime);
+    QCOMPARE(alarm->update(), true);
 
     if(alarm != nullptr){
         delete alarm;

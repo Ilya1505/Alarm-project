@@ -16,6 +16,7 @@ public:
     void setSecAfterCall(int sec);
     void setMinAfterCall(int min);
     void setTrack(int *indexTrack);
+    void setCallTime(QString callTime);
 
     bool getStatusGO();
     QString getCurrentTime();
@@ -32,7 +33,7 @@ public:
 private:
     bool statusGO;// статус будильника: true - будильник взведен, иначе - false
     QString* currentTime;
-    QString* сallTime;// время звонка
+    QString* callTime;// время звонка
     QHash<int, QString> track;// словарь композиций
     QString currentTrack;// путь до выбранной композиции
 
