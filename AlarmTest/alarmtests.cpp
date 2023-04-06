@@ -73,16 +73,16 @@ void AlarmTests::test_update_2()
     Alarm *alarm = new Alarm;
 
     QString currTime = QTime::currentTime().toString("HH:mm");
-    alarm->setCallTime(currTime);
+    alarm->start(currTime);
     QCOMPARE(alarm->update(), true);
-
+    alarm->stop();
     if(alarm != nullptr){
         delete alarm;
     }
 }
 
-// тест на остановку будильника
-void AlarmTests::test_stop()
+// тест на остановку будильника 1
+void AlarmTests::test_stop_1()
 {
     Alarm *alarm = new Alarm;
 
@@ -91,6 +91,18 @@ void AlarmTests::test_stop()
 
     alarm->setStatusGO(true);
     QCOMPARE(alarm->stop(), true);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на остановку будильника 2
+void AlarmTests::test_stop_2()
+{
+    Alarm *alarm = new Alarm;
+
+    QCOMPARE(alarm->stop(), false);
 
     if(alarm != nullptr){
         delete alarm;
@@ -138,7 +150,8 @@ void AlarmTests::test_stopwatch_2()
     }
 }
 
-void AlarmTests::test_media()
+// тест на правильность пути до медиа 1
+void AlarmTests::test_media_1()
 {
     Alarm *alarm = new Alarm;
 
@@ -153,5 +166,50 @@ void AlarmTests::test_media()
     }
     if(indexTrack != nullptr){
         delete indexTrack;
+    }
+}
+
+// тест на запуск медиа 2
+void AlarmTests::test_media_2()
+{
+    Alarm *alarm = new Alarm;
+
+    QString currTime = QTime::currentTime().toString("HH:mm");
+    alarm->start(currTime);
+    alarm->update();
+    QCOMPARE(alarm->getStatusMedia(), true);
+
+    alarm->stop();
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на запуск медиа 3
+void AlarmTests::test_media_3()
+{
+    Alarm *alarm = new Alarm;
+
+    alarm->update();
+    QCOMPARE(alarm->getStatusMedia(), false);
+
+    if(alarm != nullptr){
+        delete alarm;
+    }
+}
+
+// тест на остановку медиа 4
+void AlarmTests::test_media_4()
+{
+    Alarm *alarm = new Alarm;
+
+    QString currTime = QTime::currentTime().toString("HH:mm");
+    QCOMPARE(alarm->start(currTime), true);
+    alarm->update();
+    alarm->stop();// остановка будильника
+    QCOMPARE(alarm->getStatusMedia(), false);
+
+    if(alarm != nullptr){
+        delete alarm;
     }
 }

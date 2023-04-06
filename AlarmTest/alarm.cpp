@@ -66,6 +66,16 @@ bool Alarm::getStatusGO()
     return statusGO;
 }
 
+// получение состояния медиа, true - мелодия играет, иначе - false
+bool Alarm::getStatusMedia()
+{
+    if(player->playbackState() == QMediaPlayer::PlayingState){
+        return true;
+    } else{
+        return false;
+    }
+}
+
 QString Alarm::getCurrentTime()
 {
     return QTime::currentTime().toString("HH:mm:ss");
@@ -120,8 +130,11 @@ bool Alarm::update()
     *currentTime = QTime::currentTime().toString("HH:mm");
 
     if(*callTime == *currentTime) {
-        //todo добавить мелодию
+        //звонок будильника
         *callTime = "";
+        player->setSource(QUrl::fromLocalFile(currentTrack));
+        audioOutput->setVolume(50);
+        player->play();
         return true;
 
     } else {
@@ -132,11 +145,14 @@ bool Alarm::update()
 // остановка будильника: true - если остановка успешна, иначе - false
 bool Alarm::stop()
 {
-    //todo доделать данные метод похже до конца
     if(statusGO == false) {
         return statusGO;
     }
+    secAfterCall = 0;
+    minAfterCall = 0;
     statusGO = false;
+    *callTime = "";
+    player->stop();
     return !statusGO;
 
 }

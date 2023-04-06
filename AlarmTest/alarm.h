@@ -19,6 +19,7 @@ public:
     void setCallTime(QString callTime);
 
     bool getStatusGO();
+    bool getStatusMedia();// получение состояния медиа, true - мелодия играет, иначе - false
     QString getCurrentTime();
     QString getCurrentTrack();
     QString getCallTime();
