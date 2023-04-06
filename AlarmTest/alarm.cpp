@@ -117,7 +117,11 @@ bool Alarm::stop()
 // секундомер после звонка
 QString Alarm::timeAfterCall()
 {
-    // todo доделать секундомер позже
+    secAfterCall++;
+    if(secAfterCall > 59) {
+        secAfterCall = 0;
+        minAfterCall++;
+    }
 
     QString result = QString::number(minAfterCall) + " мин " + QString::number(secAfterCall) + " сек";
     return result;

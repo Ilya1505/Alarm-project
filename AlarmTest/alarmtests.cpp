@@ -71,14 +71,28 @@ void AlarmTests::test_getMinuteToCall()
     }
 }
 
-// тест секундомера
-void AlarmTests::test_stopwatch()
+// тест секундомера 1
+void AlarmTests::test_stopwatch_1()
 {
     Alarm *alarm = new Alarm;
 
     alarm->setSecAfterCall(10);
     alarm->setMinAfterCall(2);
-    QCOMPARE(alarm->timeAfterCall(), "2 мин 10 сек");
+    QCOMPARE(alarm->timeAfterCall(), "2 мин 11 сек");
+
+    if(alarm != nullptr) {
+        delete alarm;
+    }
+}
+
+// тест секундомера 2
+void AlarmTests::test_stopwatch_2()
+{
+    Alarm *alarm = new Alarm;
+
+    alarm->setSecAfterCall(59);
+    alarm->setMinAfterCall(0);
+    QCOMPARE(alarm->timeAfterCall(), "1 мин 0 сек");
 
     if(alarm != nullptr) {
         delete alarm;

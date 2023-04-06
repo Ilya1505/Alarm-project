@@ -15,7 +15,8 @@ private slots:
     void test_update();// тест на обновление будильника по тику таймера
     void test_stop();// тест на остановку будильника
     void test_getMinuteToCall();// тест на получение времени до звонка будильника
-    void test_stopwatch();// тест секундомера
+    void test_stopwatch_1();// тест секундомера 1
+    void test_stopwatch_2();// тест секундомера 2
     void test_media(); // тест музыки
 };
 
