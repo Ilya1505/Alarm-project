@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
         alarmtests.cpp
         alarm.h
         alarm.cpp
+        mainwindowtests.h
+        mainwindowtests.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
