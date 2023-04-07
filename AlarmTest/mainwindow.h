@@ -28,6 +28,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Alarm* alarm;
+    QTimer* timer;
+    QTimer* timerAfterCall;// секундомер после звонка будильника
+    int *indexTrack;// номер композиции
+
+
     QPushButton* getStartAlarmBut();
     QPushButton* getEditMusicBut();
     QPushButton* getstopAlarmBut();

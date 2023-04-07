@@ -94,9 +94,9 @@ QString Alarm::getCallTime()
 // вычисление времени до звонка
 QString Alarm::getMinuteToCall(const QTime &timeCall)
 {
-    // todo реализовать вычисление времени позже до конца
-    QTime time = timeCall;
-    return time.toString("HH:mm:ss");
+    long long msecToCall = QTime::currentTime().msecsTo(timeCall)+1000;
+    QTime timeToCAll = QTime::currentTime().fromMSecsSinceStartOfDay(msecToCall);
+    return timeToCAll.toString("HH:mm:ss");
 }
 
 // запуск будильника: true - если запуск успешен, иначе - false

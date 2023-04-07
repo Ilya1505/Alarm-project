@@ -109,13 +109,26 @@ void AlarmTests::test_stop_2()
     }
 }
 
-// тест на получение времени до звонка будильника
-void AlarmTests::test_getMinuteToCall()
+// тест на получение времени до звонка будильника 1
+void AlarmTests::test_getMinuteToCall_1()
 {
     Alarm *alarm = new Alarm;
     QTime currentTime = QTime::currentTime();
 
-    QCOMPARE(alarm->getMinuteToCall(currentTime),currentTime.toString("HH:mm:ss"));
+    QCOMPARE(alarm->getMinuteToCall(currentTime),"00:00:01");
+
+    if(alarm != nullptr) {
+        delete alarm;
+    }
+}
+
+// тест на получение времени до звонка будильника 2
+void AlarmTests::test_getMinuteToCall_2()
+{
+    Alarm *alarm = new Alarm;
+    QTime currentTime = QTime::currentTime();
+    QTime timeToCAll = QTime::currentTime().addSecs(10);
+    QCOMPARE(alarm->getMinuteToCall(timeToCAll),"00:00:11");
 
     if(alarm != nullptr) {
         delete alarm;

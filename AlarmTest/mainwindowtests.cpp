@@ -46,7 +46,7 @@ void MainWindowTests::test_startAlarmBut_2()
     QCOMPARE(mainWin->getStartAlarmBut()->text(),"Отменить будильник");
     QCOMPARE(mainWin->getSetTimeAlarm()->isEnabled(), false);
     QCOMPARE(mainWin->getEditMusicBut()->isEnabled(), false);
-    QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n");
+    QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник через\n");
 
 
     QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
@@ -54,6 +54,18 @@ void MainWindowTests::test_startAlarmBut_2()
     QCOMPARE(mainWin->getSetTimeAlarm()->isEnabled(), true);
     QCOMPARE(mainWin->getEditMusicBut()->isEnabled(), true);
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник");
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}
+
+// тест проверки кнопки старта/отмены будильника 3
+void MainWindowTests::test_startAlarmBut_3()
+{
+    MainWindow* mainWin = new MainWindow();
+    *mainWin->indexTrack = 4;
+    QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
+    QCOMPARE(mainWin->alarm->getCurrentTrack(), "source/Браво - Этот город самый лучший.mp3");
     if(mainWin != nullptr){
         delete mainWin;
     }

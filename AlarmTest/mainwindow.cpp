@@ -13,11 +13,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->timeLabel->setText(alarm->getCurrentTime());
     ui->stopAlarmBut->setEnabled(false);
 
+    //запуск таймера
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
+    timer->start(1000);
+
+    // инициализации мелодии по умолчанию
+    indexTrack = new int(0);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(timer != nullptr){
+        delete timer;
+    }
+    if(alarm != nullptr){
+        delete alarm;
+    }
 }
 
 QPushButton* MainWindow::getStartAlarmBut()
@@ -48,10 +62,9 @@ QTimeEdit* MainWindow::getSetTimeAlarm()
 // нажатие на кнопку "старт/отмена будильника"
 void MainWindow::on_startAlarmBut_clicked()
 {
-    // todo дописать установку музыки и подсчет времени до звонка
     //если будильник не заведен
     if(ui->startAlarmBut->text() == "Завести будильник"){
-
+        alarm->setTrack(indexTrack);//установка мелодии
         //если будильник не удалось завести, отмена
         if (alarm->start(ui->setTimeAlarm->text()) == false) {
             return;
@@ -60,7 +73,7 @@ void MainWindow::on_startAlarmBut_clicked()
         ui->startAlarmBut->setText("Отменить будильник");
         ui->setTimeAlarm->setEnabled(false);
         ui->editMusicBut->setEnabled(false);
-        ui->stopAlarmBut->setText("Остановить будильник\n");
+        ui->stopAlarmBut->setText("Остановить будильник через\n"+alarm->getMinuteToCall(ui->setTimeAlarm->time()));
 
     // если будильник уже заведен, отмена завода
     } else{
