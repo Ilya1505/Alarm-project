@@ -3,6 +3,7 @@
 #include "QLabel"
 #include "QPushButton"
 #include "QTimeEdit"
+#include "QTime"
 MainWindowTests::MainWindowTests(QObject *parent)
     : QObject{parent}
 {
@@ -43,9 +44,27 @@ void MainWindowTests::test_startAlarmBut_2()
 
     QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
     QCOMPARE(mainWin->getStartAlarmBut()->text(),"Отменить будильник");
+    QCOMPARE(mainWin->getSetTimeAlarm()->isEnabled(), false);
+    QCOMPARE(mainWin->getEditMusicBut()->isEnabled(), false);
+    QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n");
+
 
     QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
     QCOMPARE(mainWin->getStartAlarmBut()->text(),"Завести будильник");
+    QCOMPARE(mainWin->getSetTimeAlarm()->isEnabled(), true);
+    QCOMPARE(mainWin->getEditMusicBut()->isEnabled(), true);
+    QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник");
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}
+
+// тест на проверку обновления по тику таймера 1
+void MainWindowTests::test_update_1()
+{
+    MainWindow* mainWin = new MainWindow();
+    mainWin->updateTime();
+    QCOMPARE(mainWin->getTimeLabel()->text(), QTime::currentTime().toString("HH:mm:ss"));
 
     if(mainWin != nullptr){
         delete mainWin;
