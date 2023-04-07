@@ -73,7 +73,7 @@ void MainWindow::on_startAlarmBut_clicked()
 
 }
 
-// обновление таймера
+// обновление состояние будильника по тику таймера
 void MainWindow::updateTime()
 {
     ui->timeLabel->setText(alarm->getCurrentTime());
@@ -88,3 +88,12 @@ void MainWindow::updateTime()
         }
     }
 }
+
+// нажатие на кнопку "Остановить будильник"
+void MainWindow::on_stopAlarmBut_clicked()
+{
+    alarm->stop();
+    ui->startAlarmBut->setText("Завести будильник");
+    ui->stopAlarmBut->setText("Остановить будильник");
+}
+

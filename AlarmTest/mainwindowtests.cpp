@@ -70,3 +70,19 @@ void MainWindowTests::test_update_1()
         delete mainWin;
     }
 }
+
+// тест проверки кнопки остановки будильника 1
+void MainWindowTests::test_stopAlarmBut_1()
+{
+    MainWindow* mainWin = new MainWindow();
+
+    mainWin->getstopAlarmBut()->setEnabled(true);
+    QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
+    QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);
+    QCOMPARE(mainWin->getStartAlarmBut()->text(), "Завести будильник");
+    QCOMPARE(mainWin->getstopAlarmBut()->text(), "Остановить будильник");
+
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}

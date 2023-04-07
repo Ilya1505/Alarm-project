@@ -20,8 +20,10 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_startAlarmBut_clicked();
-    void updateTime();
+    void on_startAlarmBut_clicked();// нажатие на кнопку "старт/отмена будильника"
+    void updateTime();// обновление состояние будильника по тику таймера
+
+    void on_stopAlarmBut_clicked();// нажатие на кнопку "Остановить будильник"
 
 private:
     Ui::MainWindow *ui;
