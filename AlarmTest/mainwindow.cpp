@@ -135,3 +135,10 @@ void MainWindow::updateTimeAfterCall()
 {
     ui->stopAlarmBut->setText("Остановить будильник\n- " + alarm->timeAfterCall());
 }
+
+// нажатие на кнопку "выбор мелодии"
+void MainWindow::on_editMusicBut_clicked()
+{
+    windowMusic->show();
+}
+

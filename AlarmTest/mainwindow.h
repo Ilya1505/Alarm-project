@@ -26,6 +26,8 @@ private slots:
     void updateTimeAfterCall();// секундомер после звонка будильника
     void on_stopAlarmBut_clicked();// нажатие на кнопку "Остановить будильник"
 
+    void on_editMusicBut_clicked();// нажатие на кнопку "выбор мелодии"
+
 private:
     Ui::MainWindow *ui;
     Alarm* alarm;

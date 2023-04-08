@@ -21,6 +21,7 @@ void MainWindowTests::test_construction()
     QVERIFY2(mainWin->getEditMusicBut(), "Push button EditMusicBut not created");
     QVERIFY2(mainWin->getstopAlarmBut(), "Push button StopAlarmBut not created");
     QVERIFY2(mainWin->windowMusic, "Window music not created");
+    QCOMPARE(mainWin->windowMusic->isHidden(), true);
     if(mainWin != nullptr){
         delete mainWin;
     }
@@ -178,6 +179,18 @@ void MainWindowTests::test_timerAfterCall_2()
     }
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n- 1 мин 0 сек");
     QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);// остановка будильника
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}
+
+// тест нажатия на кнопку выбора мелодии
+void MainWindowTests::test_editMusicBut()
+{
+    MainWindow* mainWin = new MainWindow();
+    QTest::mouseClick(mainWin->getEditMusicBut(), Qt::LeftButton);// нажатие на кнопку выбора мелодии
+    QCOMPARE(mainWin->windowMusic->isHidden(), false);// проверка, что окно выбора мелодии открылось
+
     if(mainWin != nullptr){
         delete mainWin;
     }

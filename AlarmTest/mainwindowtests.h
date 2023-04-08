@@ -23,6 +23,7 @@ private slots:
     void test_timer_2();// тест таймера
     void test_timerAfterCall_1();// тест таймера после звонка 1
     void test_timerAfterCall_2();// тест таймера после звонка 2
+    void test_editMusicBut();// тест нажатия на кнопку выбора мелодии
 
 };
 
