@@ -33,9 +33,14 @@ void ChoiseMusicTests::test_pushButtons()
     int* index = new int(0);
     ChoiseMusic* choiseWin = new ChoiseMusic(index);
     QList<QPushButton*> pushButtons = choiseWin->getPushButtons();// получаем массив кнопок
-    QTest::mouseClick(pushButtons[0], Qt::LeftButton);// нажатие на первую кнопку
-    QCOMPARE(*index, 0);// проверка номера выбранной композиции
-
+    for (size_t i = 0; i < pushButtons.size(); i++) {
+        choiseWin->show();
+        QTest::mouseClick(pushButtons[i], Qt::LeftButton);// нажатие на i кнопку
+        if(i != pushButtons.size()-1){
+            QCOMPARE(*index, i);
+        }
+        QCOMPARE(choiseWin->isHidden(), true);
+    }
     if(choiseWin != nullptr){
         delete choiseWin;
     }

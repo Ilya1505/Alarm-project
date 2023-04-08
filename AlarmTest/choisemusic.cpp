@@ -38,7 +38,40 @@ QList<QPushButton*> ChoiseMusic::getPushButtons()
 
 void ChoiseMusic::on_pushButton_clicked()
 {
-    indexTrack = 0;
+    *indexTrack = 0;
     this->close();
 }
-// реализовать слоты для других кнопок
+
+void ChoiseMusic::on_pushButton_2_clicked()
+{
+    *indexTrack = 1;
+    this->close();
+}
+
+
+void ChoiseMusic::on_pushButton_3_clicked()
+{
+    *indexTrack = 2;
+    this->close();
+}
+
+
+void ChoiseMusic::on_pushButton_4_clicked()
+{
+    *indexTrack = 3;
+    this->close();
+}
+
+
+void ChoiseMusic::on_pushButton_5_clicked()
+{
+    *indexTrack = 4;
+    this->close();
+}
+
+
+void ChoiseMusic::on_pushButton_6_clicked()
+{
+    this->close();
+}
+
