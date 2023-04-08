@@ -22,7 +22,7 @@ public:
 private slots:
     void on_startAlarmBut_clicked();// нажатие на кнопку "старт/отмена будильника"
     void updateTime();// обновление состояние будильника по тику таймера
-
+    void updateTimeAfterCall();// секундомер после звонка будильника
     void on_stopAlarmBut_clicked();// нажатие на кнопку "Остановить будильник"
 
 private:

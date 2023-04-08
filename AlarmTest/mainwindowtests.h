@@ -20,6 +20,8 @@ private slots:
     void test_stopAlarmBut_1();// тест проверки кнопки остановки будильника 1
     void test_timer_1();// тест таймера
     void test_timer_2();// тест таймера
+    void test_timerAfterCall_1();// тест таймера после звонка 1
+    void test_timerAfterCall_2();// тест таймера после звонка 2
 
 };
 

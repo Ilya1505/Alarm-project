@@ -18,6 +18,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTime()));
     timer->start(1000);
 
+    //секундомер после звонка будильника
+    timerAfterCall = new QTimer();
+    connect(timerAfterCall, SIGNAL(timeout()), this, SLOT(updateTimeAfterCall()));
+
     // инициализации мелодии по умолчанию
     indexTrack = new int(0);
 
@@ -102,6 +106,7 @@ void MainWindow::updateTime()
             ui->stopAlarmBut->setEnabled(true);
             ui->startAlarmBut->setEnabled(false);
             timer->stop();
+            timerAfterCall->start(1000);
         }
     }
 }
@@ -109,8 +114,14 @@ void MainWindow::updateTime()
 // нажатие на кнопку "Остановить будильник"
 void MainWindow::on_stopAlarmBut_clicked()
 {
+    //todo реализовать данный метод позже до конца
     alarm->stop();
     ui->startAlarmBut->setText("Завести будильник");
     ui->stopAlarmBut->setText("Остановить будильник");
 }
 
+//секундомер после звонка будильника
+void MainWindow::updateTimeAfterCall()
+{
+    ui->stopAlarmBut->setText("Остановить будильник\n- " + alarm->timeAfterCall());
+}
