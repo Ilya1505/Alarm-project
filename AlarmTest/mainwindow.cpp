@@ -114,9 +114,10 @@ void MainWindow::updateTime()
 // нажатие на кнопку "Остановить будильник"
 void MainWindow::on_stopAlarmBut_clicked()
 {
-    //todo реализовать остановку таймера(секундомера) и запуск обычного таймера
     alarm->stop();
+    timerAfterCall->stop();
     ui->startAlarmBut->setText("Завести будильник");
+    timer->start(1000);
     ui->stopAlarmBut->setEnabled(false);
     ui->setTimeAlarm->setEnabled(true);
     ui->stopAlarmBut->setText("Остановить будильник");

@@ -103,6 +103,19 @@ void MainWindowTests::test_stopAlarmBut_1()
     }
 }
 
+// тест проверки кнопки остановки будильника 2
+void MainWindowTests::test_stopAlarmBut_2()
+{
+    MainWindow* mainWin = new MainWindow();
+    mainWin->getSetTimeAlarm()->setTime(QTime::currentTime());
+    QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);// запуск будильника
+    mainWin->updateTime();// обновление будильника
+    QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);// остановка будильника
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}
+
 // тест таймера 1
 void MainWindowTests::test_timer_1()
 {
