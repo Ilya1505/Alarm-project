@@ -25,6 +25,11 @@ set(PROJECT_SOURCES
         alarm.cpp
         mainwindowtests.h
         mainwindowtests.cpp
+        choisemusic.h
+        choisemusic.cpp
+        choisemusic.ui
+        choisemusictests.h
+        choisemusictests.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
