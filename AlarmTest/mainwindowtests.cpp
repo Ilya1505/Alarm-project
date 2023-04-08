@@ -98,3 +98,32 @@ void MainWindowTests::test_stopAlarmBut_1()
         delete mainWin;
     }
 }
+
+// тест таймера 1
+void MainWindowTests::test_timer_1()
+{
+    MainWindow* mainWin = new MainWindow();
+
+    QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);
+
+    QCOMPARE(mainWin->timer->isActive(), true);
+
+
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}
+// тест таймера 2
+void MainWindowTests::test_timer_2()
+{
+    MainWindow* mainWin = new MainWindow();
+    mainWin->getSetTimeAlarm()->setTime(QTime::currentTime());
+    QTest::mouseClick(mainWin->getStartAlarmBut(), Qt::LeftButton);// запуск будильника
+    QCOMPARE(mainWin->timer->isActive(), true);// проверка активации таймера
+    mainWin->updateTime();// обновление будильника
+    QCOMPARE(mainWin->timer->isActive(), false);// проверка остановки таймера
+    QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n00:00");
+    if(mainWin != nullptr){
+        delete mainWin;
+    }
+}

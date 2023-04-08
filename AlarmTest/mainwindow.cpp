@@ -93,11 +93,15 @@ void MainWindow::updateTime()
     // если будильник заведен
     if(alarm->getStatusGO() == true){
 
+        // вычисление времени до звонка
+        ui->stopAlarmBut->setText("Остановить будильник через\n"+alarm->getMinuteToCall(ui->setTimeAlarm->time()));
+
         // если будильник звенит
         if(alarm->update() == true) {
             ui->stopAlarmBut->setText("Остановить будильник\n00:00");
             ui->stopAlarmBut->setEnabled(true);
             ui->startAlarmBut->setEnabled(false);
+            timer->stop();
         }
     }
 }
