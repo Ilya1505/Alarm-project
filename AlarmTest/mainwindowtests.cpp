@@ -14,8 +14,13 @@ MainWindowTests::MainWindowTests(QObject *parent)
 void MainWindowTests::test_construction()
 {
     MainWindow* mainWin = new MainWindow();
-
-
+    QVERIFY2(mainWin, "Main window not created");
+    QVERIFY2(mainWin->getStartAlarmBut(), "Push button StartBut not created");
+    QVERIFY2(mainWin->getSetTimeAlarm(), "QTimeEdit SetTimeAlarm not created");
+    QVERIFY2(mainWin->getTimeLabel(), "Label TimeLabel not created");
+    QVERIFY2(mainWin->getEditMusicBut(), "Push button EditMusicBut not created");
+    QVERIFY2(mainWin->getstopAlarmBut(), "Push button StopAlarmBut not created");
+    QVERIFY2(mainWin->windowMusic, "Window music not created");
     if(mainWin != nullptr){
         delete mainWin;
     }

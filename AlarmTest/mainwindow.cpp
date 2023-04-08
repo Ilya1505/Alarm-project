@@ -25,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     // инициализации мелодии по умолчанию
     indexTrack = new int(0);
 
+    //создание окна списка композиций
+    windowMusic = new ChoiseMusic(this, indexTrack);
 }
 
 MainWindow::~MainWindow()

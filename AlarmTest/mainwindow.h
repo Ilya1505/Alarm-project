@@ -6,6 +6,7 @@
 #include "QTimer"
 #include "QTimeEdit"
 #include "QMessageBox"
+#include "choisemusic.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,7 +32,7 @@ private:
     QTimer* timer;
     QTimer* timerAfterCall;// секундомер после звонка будильника
     int *indexTrack;// номер композиции
-
+    ChoiseMusic *windowMusic;// окно выбора мелодии
 
     QPushButton* getStartAlarmBut();
     QPushButton* getEditMusicBut();
