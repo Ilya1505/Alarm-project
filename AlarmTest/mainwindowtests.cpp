@@ -93,6 +93,10 @@ void MainWindowTests::test_stopAlarmBut_1()
     QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);
     QCOMPARE(mainWin->getStartAlarmBut()->text(), "Завести будильник");
     QCOMPARE(mainWin->getstopAlarmBut()->text(), "Остановить будильник");
+    QCOMPARE(mainWin->getstopAlarmBut()->isEnabled(), false);
+    QCOMPARE(mainWin->getSetTimeAlarm()->isEnabled(), true);
+    QCOMPARE(mainWin->getStartAlarmBut()->isEnabled(), true);
+    QCOMPARE(mainWin->getEditMusicBut()->isEnabled(), true);
 
     if(mainWin != nullptr){
         delete mainWin;
@@ -124,6 +128,7 @@ void MainWindowTests::test_timer_2()
     QCOMPARE(mainWin->timer->isActive(), false);// проверка остановки таймера
     QCOMPARE(mainWin->timerAfterCall->isActive(), true);// проверка запуска таймера после звонка
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n00:00");
+    QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);// остановка будильника
     if(mainWin != nullptr){
         delete mainWin;
     }
@@ -141,6 +146,7 @@ void MainWindowTests::test_timerAfterCall_1()
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n- 0 мин 1 сек");
     mainWin->updateTimeAfterCall();
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n- 0 мин 2 сек");
+    QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);// остановка будильника
     if(mainWin != nullptr){
         delete mainWin;
     }
@@ -157,6 +163,7 @@ void MainWindowTests::test_timerAfterCall_2()
         mainWin->updateTimeAfterCall();
     }
     QCOMPARE(mainWin->getstopAlarmBut()->text(),"Остановить будильник\n- 1 мин 0 сек");
+    QTest::mouseClick(mainWin->getstopAlarmBut(), Qt::LeftButton);// остановка будильника
     if(mainWin != nullptr){
         delete mainWin;
     }
