@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    if(indexTrack != nullptr){
+        delete indexTrack;
+    }
     if(timer != nullptr){
         delete timer;
     }

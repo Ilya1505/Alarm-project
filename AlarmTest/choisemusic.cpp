@@ -1,11 +1,18 @@
 #include "choisemusic.h"
 #include "ui_choisemusic.h"
 
-ChoiseMusic::ChoiseMusic(QWidget *parent) :
+ChoiseMusic::ChoiseMusic(QWidget *parent, int *indexTrack) :
     QDialog(parent),
     ui(new Ui::ChoiseMusic)
 {
     ui->setupUi(this);
+    this->indexTrack = indexTrack;
+}
+
+ChoiseMusic::ChoiseMusic(int *indexTrack) : ui(new Ui::ChoiseMusic)
+{
+    ui->setupUi(this);
+    this->indexTrack = indexTrack;
 }
 
 ChoiseMusic::~ChoiseMusic()
@@ -28,3 +35,10 @@ QList<QPushButton*> ChoiseMusic::getPushButtons()
     };
     return pushButtons;
 }
+
+void ChoiseMusic::on_pushButton_clicked()
+{
+    indexTrack = 0;
+    this->close();
+}
+// реализовать слоты для других кнопок
